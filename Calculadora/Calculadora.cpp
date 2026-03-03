@@ -86,6 +86,19 @@ double dividir(double a, double b) {
 
 double potencia(double base, double exponente)
 {
+	// Caso especial: 0^0 no está definido matemáticamente
+	if (base == 0 && exponente == 0) {
+		cout << "Advertencia: 0^0 es indeterminado. Retornando 1." << endl;
+		return 1;
+	}
+	// Caso especial: cualquier número^0 = 1
+	if (exponente == 0) {
+		return 1;
+	}
+	// Exponentes negativos
+	if (exponente < 0) {
+		return 1.0 / potencia(base, -exponente);
+	}
 	double resultado = 1;
 	for (int i = 0; i < exponente; i++)
 	{
