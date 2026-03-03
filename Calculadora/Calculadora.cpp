@@ -34,8 +34,7 @@ int main() {
 				resultado = multiplicar(num1, num2);
 				cout << "Resultado: " << resultado << endl;
 				break;
-			}
-		}
+
 			case 4:
 				if (num2 != 0) {
 					resultado = dividir(num1, num2);
@@ -44,13 +43,16 @@ int main() {
 				else {
 					cout << "Error: Division por cero" << endl;
 				}
+				break;
+
 			}
 		}
 		else if (opcion != 0) {
 			cout << "Opcion no valida" << endl;
+			break;
+
+
 		}
-		
-			cout << endl;
 	} while (opcion != 0);
 	cout << "Hasta luego!" << endl;
 	return 0;
