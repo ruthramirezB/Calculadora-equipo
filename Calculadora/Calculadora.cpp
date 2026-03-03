@@ -9,6 +9,7 @@ double sumar(double a, double b);
 double restar(double a, double b);
 double multiplicar(double a, double b);
 double dividir(double a, double b);
+double potencia(double base, double exponente);
 int main() {
 	int opcion;
 	double num1, num2, resultado;
@@ -16,7 +17,7 @@ int main() {
 		mostrarMenu();
 		cout << "Elige una opcion: ";
 		cin >> opcion;
-		if (opcion >= 1 && opcion <= 4) {
+		if (opcion >= 1 && opcion <= 5) {
 			cout << "Introduce el primer numero: ";
 			cin >> num1;
 			cout << "Introduce el segundo numero: ";
@@ -44,6 +45,10 @@ int main() {
 					cout << "Error: Division por cero" << endl;
 				}
 				break;
+			case 5:
+				resultado = potencia(num1, num2);
+				cout << "Resultado: " << resultado << endl;
+				break;
 
 			}
 		}
@@ -63,6 +68,7 @@ void mostrarMenu() {
 	cout << "2. Restar" << endl;
 	cout << "3. Multiplicar" << endl;
 	cout << "4. Dividir" << endl;
+	cout << "5.Potencia (a^b)" << endl;
 	cout << "0. Salir" << endl;
 }
 double multiplicar(double a, double b) {
@@ -76,4 +82,28 @@ double restar(double a, double b) {
 }
 double dividir(double a, double b) {
 	return a / b;
+}
+
+double potencia(double base, double exponente)
+{
+	// Caso especial: 0^0 no está definido matemáticamente
+	if (base == 0 && exponente == 0) {
+		cout << "Advertencia: 0^0 es indeterminado. Retornando 1." << endl;
+		return 1;
+	}
+	// Caso especial: cualquier número^0 = 1
+	if (exponente == 0) {
+		return 1;
+	}
+	// Exponentes negativos
+	if (exponente < 0) {
+		return 1.0 / potencia(base, -exponente);
+	}
+	double resultado = 1;
+	for (int i = 0; i < exponente; i++)
+	{
+		resultado *= base;
+
+	}
+	return resultado;
 }
